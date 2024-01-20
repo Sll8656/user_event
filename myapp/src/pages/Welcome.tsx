@@ -1,7 +1,9 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { Alert, Card, Typography } from 'antd';
 import React from 'react';
+import { FormattedMessage, useIntl } from 'umi';
 import styles from './Welcome.less';
+
 const CodePreview: React.FC = ({ children }) => (
   <pre className={styles.pre}>
     <code>
@@ -9,12 +11,18 @@ const CodePreview: React.FC = ({ children }) => (
     </code>
   </pre>
 );
+
 const Welcome: React.FC = () => {
+  const intl = useIntl();
+
   return (
     <PageContainer>
       <Card>
         <Alert
-          message={'更快更强的重型组件，已经发布。'}
+          message={intl.formatMessage({
+            id: 'pages.welcome.alertMessage',
+            defaultMessage: 'Faster and stronger heavy-duty components have been released.',
+          })}
           type="success"
           showIcon
           banner
@@ -29,7 +37,7 @@ const Welcome: React.FC = () => {
             rel="noopener noreferrer"
             target="__blank"
           >
-            欢迎使用
+            <FormattedMessage id="pages.welcome.link" defaultMessage="Welcome" />
           </a>
         </Typography.Text>
         <CodePreview>yarn add @ant-design/pro-components</CodePreview>
@@ -37,4 +45,5 @@ const Welcome: React.FC = () => {
     </PageContainer>
   );
 };
+
 export default Welcome;
