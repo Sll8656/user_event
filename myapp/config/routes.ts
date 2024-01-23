@@ -1,4 +1,6 @@
-﻿export default [
+﻿import * as path from "path";
+
+export default [
   {
     path: '/user',
     layout: false,
@@ -29,12 +31,10 @@
     name: 'admin',
     icon: 'crown',
     access: 'canAdmin',
+    component: './Admin',
     routes: [
       {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        icon: 'smile',
-        component: './Welcome',
+        path: '/admin/user-manage', name : '用户管理', icon: 'smile', component: './Admin/UserManage'
       },
       {
         component: './404',

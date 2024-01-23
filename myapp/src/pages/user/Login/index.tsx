@@ -1,23 +1,10 @@
 import Footer from '@/components/Footer';
-import { login } from '@/services/ant-design-pro/api';
-import { getFakeCaptcha } from '@/services/ant-design-pro/login';
-import {
-  AlipayCircleOutlined,
-  LockOutlined,
-  MobileOutlined,
-  TaobaoCircleOutlined,
-  UserOutlined,
-  WeiboCircleOutlined,
-} from '@ant-design/icons';
-import {
-  LoginForm,
-  ProFormCaptcha,
-  ProFormCheckbox,
-  ProFormText,
-} from '@ant-design/pro-components';
-import { Alert, message, Tabs } from 'antd';
-import React, { useState } from 'react';
-import { FormattedMessage, history, SelectLang, useIntl, useModel } from 'umi';
+import {login} from '@/services/ant-design-pro/api';
+import {LockOutlined, UserOutlined,} from '@ant-design/icons';
+import {LoginForm, ProFormCheckbox, ProFormText,} from '@ant-design/pro-components';
+import {Alert, Divider, message, Tabs} from 'antd';
+import React, {useState} from 'react';
+import {FormattedMessage, history, Link, SelectLang, useIntl, useModel} from 'umi';
 import styles from './index.less';
 import {PLANET_LINK, SYSTEM_LOGO} from "@/constants";
 
@@ -91,7 +78,9 @@ const Login: React.FC = () => {
         <LoginForm
           logo={<img alt="logo" src={SYSTEM_LOGO} />}
           title="sll's self learning program"
-          subTitle={<a href={PLANET_LINK} target="_blank" rel="noreferrer"> sll forever love zjr </a> }
+          subTitle={
+           <a href={PLANET_LINK} target="_blank" rel="noreferrer"> sll forever love zjr </a>
+          }
           initialValues={{
             autoLogin: true,
           }}
@@ -101,13 +90,7 @@ const Login: React.FC = () => {
           }}
         >
           <Tabs activeKey={type} onChange={setType}>
-            <Tabs.TabPane
-              key="account"
-              tab={intl.formatMessage({
-                id: 'pages.login.accountLogin.tab',
-                defaultMessage: '账号密码登录',
-              })}
-            />
+            <Tabs.TabPane key="account" tab={ '账号密码登录'}/>
           </Tabs>
 
           {status === 'error' && loginType === 'account' && (
@@ -175,6 +158,10 @@ const Login: React.FC = () => {
             <ProFormCheckbox noStyle name="autoLogin">
               <FormattedMessage id="pages.login.rememberMe" defaultMessage="自动登录" />
             </ProFormCheckbox>
+            <Divider type="vertical"/>
+            <Link to="/user/register">
+              新用户注册
+            </Link>
             <a
               style={{
                 float: 'right',
@@ -182,10 +169,12 @@ const Login: React.FC = () => {
               href={PLANET_LINK}
               target="_blank"
             >
-              <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码找sll" />
+              忘记密码
             </a>
           </div>
         </LoginForm>
+
+
       </div>
       <Footer />
     </div>

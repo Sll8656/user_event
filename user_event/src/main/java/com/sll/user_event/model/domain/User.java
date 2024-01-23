@@ -42,6 +42,8 @@ public class User implements Serializable {
 
     private Integer userRole;
 
+    private String planetCode;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
